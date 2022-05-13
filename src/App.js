@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import MovieList from "./components/movieList";
 import MovieListHeading from "./components/movieListHeading";
 import SearchBar from "./components/searchBar";
-import addFavourites from "./components/addFavourites";
+import AddFavourites from "./components/addFavourites";
 import RemoveFavourites from "./components/removeFavourites";
 
 function App() {
@@ -28,7 +28,8 @@ function App() {
 
   useEffect(() =>{
       const movieFavourites = JSON.parse(localStorage.getItem('movies-app-favourites'));
-      setFavourites(movieFavourites)
+      if (localStorage.key('movies-app-favourites')) {
+      setFavourites(movieFavourites) }
   }, [])
 
   const saveInLocalStorage = items => {
@@ -55,7 +56,7 @@ function App() {
             <SearchBar search={search} setSearch={setSearch}/>
         </div>
         <div className="row">
-            <MovieList movies={movies} handleFavouriteClick={addFavouriteMovie} favourite={addFavourites}/>
+            <MovieList movies={movies} handleFavouriteClick={addFavouriteMovie} favourite={AddFavourites}/>
         </div>
         <div className="row d-flex align-items-center mt-4 mb-4">
             <MovieListHeading heading='Favourites'/>
